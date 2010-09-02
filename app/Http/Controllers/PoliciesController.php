@@ -40,12 +40,9 @@ class PoliciesController extends Controller
 
     public function create_page()
     {
-                $trees = Trees::all();
-        $buildings = Buildings::all();
         $contents = [
-            'trees' => $trees,
-            'buildings' => $buildings,
-            'policies' => Policies::all(),
+            'trees' => Trees::all(),
+            'building' => Buildings::all(),
         ];
         $pagecontent = view('policies.create',$contents);
 
@@ -61,25 +58,16 @@ class PoliciesController extends Controller
     }
 
     public function save_page(Request $request)
-    {
-        $request->validate([    
-            'numb_applications' => 'required',
-            'name' => 'required',
-            'age' => 'required',
-            'exp' => 'required',
-            'price' => 'required',
-            'premi' => 'required'
-          ]);
-      
+    {    
           $savePolicies = New Policies;
-          $savePolicies->numb_policies = $this->get_code;
+          $savePolicies->numb_policies = $request->numb_policies;
           $savePolicies->numb_applications = $request->numb_applications;
           $savePolicies->name = $request->name;
-          $savePolicies->trees = $request->idtrees;
+          $savePolicies->idtrees = $request->trees;
           $savePolicies->age = $request->age;
           $savePolicies->exp = $request->exp;
           $savePolicies->price = $request->price;
-          $savePolicies->type = $request->idbuildings;
+          $savePolicies->type = $request->type;
           $savePolicies->premi = $request->premi;
           $savePolicies->save();          
         //   return $request->all();
@@ -108,21 +96,7 @@ class PoliciesController extends Controller
     }
 
     public function update_save(Request $request, Policies $polis)
-    {
-        // return $request->all();
-        $request->validate([
-            'numb_policies' => 'required|max:100',
-            'numb_applications' => 'required',
-            'name' => 'required',
-            'trees' => 'required',
-            'age' => 'required',
-            'exp' => 'required',
-            'price' => 'required',
-            'type' => 'required',
-            'premi' => 'required'
-            ]);
-
-            
+    {           
             $updatePolicies = Policies::find($polis->idpolicies);
             $updatePolicies->numb_policies = $request->numb_policies;
             $updatePolicies->numb_applications = $request->numb_applications;
@@ -149,7 +123,7 @@ class PoliciesController extends Controller
          ->first();
 
          if(is_null($dataPolicies)){
-             $nowcode = '0001';
+             $nowcode = '00001';
          } else {
               $lastcode = $dataPolicies->numb_policies;
               $lastcode1 = intval(substr($lastcode,-5))+1;

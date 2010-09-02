@@ -85,7 +85,7 @@
           <div class="form-group">
               <label class="col-sm-2 control-label">Tipe Bangunan</label>
               <div class="col-sm-8">
-                <select class="form-control" name="idbuildings" id="idbuildings" onchange="passing_fee(this.value)">
+                <select class="form-control select2" name="idbuildings" id="idbuildings" onchange="passing_fee(this.value)">
                   <option value="">--Pilih Tipe Bangunan--</option>
                   @php
                       $param = [];
@@ -104,7 +104,7 @@
             <label class="col-sm-2 control-label">Tarif</label>
             <div class="col-sm-8">
               <!-- {{-- name:name untuk melempar controller ke database --}} -->
-              <input type="text" class="form-control" value="0" id="Tarif" name="fee" onkeyup="total(1)" required>
+              <input type="text" class="form-control" value="0" id="fee" name="fee" onkeyup="total(1)" required>
             </div>
           </div>
 
