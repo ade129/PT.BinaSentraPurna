@@ -24,8 +24,7 @@
                 <th>No</th>
                 <th>Kode Cabang</th>
                 <th>Nama Cabang</th>
-                <th></th>
-              </tr>
+                </tr>
               </thead>
               <tbody>
                 @foreach ($trees as $tree)
@@ -34,9 +33,7 @@
                     <td>{{$tree->code}}</td>
                     <td>{{$tree->name}}</td>
                 </tr>    
-                </td>
-              </tr>
-              @endforeach
+                 @endforeach
               </tbody>
             </table>
           </div>
