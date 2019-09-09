@@ -28,8 +28,15 @@
               </tr>
               </thead>
               <tbody>
+                @foreach ($trees as $tree)
+                <tr>
+                    <td>{{$tree->idtrees}}</td>
+                    <td>{{$tree->code}}</td>
+                    <td>{{$tree->name}}</td>
+                </tr>    
                 </td>
               </tr>
+              @endforeach
               </tbody>
             </table>
           </div>
