@@ -13,4 +13,9 @@ class Buildings extends Model
 
     protected $table = 'buildings';
     protected $primaryKey = 'idbuildings';
+
+    public function Policies()
+    {
+        return $this->belongsTo('App\Models\Policies'.'idpolicies');
+    }
 }

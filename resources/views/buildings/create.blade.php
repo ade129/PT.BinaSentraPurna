@@ -50,7 +50,7 @@ section class="content-header">
               <div class="form-group">
                 <label class="col-sm-2 control-label"></label>
                 <div class="col-sm-10">
-                  <a href="{{url('categories')}}" class="btn btn-warning pull-right">Back</a>
+                  <a href="{{url('buildings')}}" class="btn btn-warning pull-right">Back</a>
                   <input type="submit" value="Save" class="btn btn-primary">
                 </div>
               </div>

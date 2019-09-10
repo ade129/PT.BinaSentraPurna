@@ -14,4 +14,13 @@ class Policies extends Model
     protected $table = 'policies';
     protected $primaryKey = 'idpolicies';
 
+    public function trees()
+    {
+        return $this->belongsTo('App\Models\Trees','idtrees');
+    }
+
+    public function buildings()
+    {
+        return $this->belongsTo('App\Models\Buildings','idbuildings');
+    }
 }

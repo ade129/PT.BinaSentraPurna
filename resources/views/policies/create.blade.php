@@ -46,8 +46,13 @@
           <div class="form-group">
               <label class="col-sm-2 control-label">Cabang</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" placeholder="Cabang" name="trees" required>
-              </div>
+                <select class="form-control" id="sel1" name="idtrees">
+                  <option value="">--Pilih Cabang--</option>
+                  @foreach ($trees as $cabang)
+                  <option value="{{$cabang->idtrees}}">{{$cabang->name}}</option>    
+                  @endforeach
+                </select>
+                </div>
           </div>
 
   
@@ -75,7 +80,12 @@
           <div class="form-group">
               <label class="col-sm-2 control-label">Tipe Bangunan</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" placeholder="Tipe Bangunan" name="type" required>
+                <select class="form-control" name="idbuildings" id="sel1">
+                  <option value="">--Pilih Tipe Bangunan--</option>
+                  @foreach ($buildings as $bangunan)
+                  <option value="{{$bangunan->idbuildings}}">{{$bangunan->name}}</option>    
+                  @endforeach
+                </select>
               </div>
           </div>
 
@@ -98,10 +108,10 @@
       </div>  
     </div>                  
     </section>
-    //delete row
+    {{-- //delete row
     $('#table').on('click', '.del' ,function(){
       $(this).closest('tr').remove();
-    });
+    }); --}}
   </section>
   
         

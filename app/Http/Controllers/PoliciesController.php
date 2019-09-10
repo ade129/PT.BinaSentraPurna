@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\Policies;
+use App\Models\Trees;
+use App\Models\Buildings;
 use Illuminate\Http\Request;
 use Validator;
 use SoftDeletes;
@@ -19,7 +21,8 @@ class PoliciesController extends Controller
     public function index()
     {
         $contents = [
-            'policies' => Policies::all(),
+            'policies' => Policies::with(['trees'])->get(),
+            'policies' => Policies::with(['buildings'])->get(),
         ];
         // return $contents;
         $pagecontent = view('policies.index',$contents);
@@ -38,7 +41,11 @@ class PoliciesController extends Controller
 
     public function create_page()
     {
+        $trees = Trees::all();
+        $buildings = Buildings::all();
         $contents = [
+            'trees' => $trees,
+            'buildings' => $buildings,
             'policies' => Policies::all(),
         ];
         $pagecontent = view('policies.create',$contents);
@@ -60,11 +67,9 @@ class PoliciesController extends Controller
             'numb_policies' => 'required',
             'numb_applications' => 'required',
             'name' => 'required',
-            'trees' => 'required',
             'age' => 'required',
             'exp' => 'required',
             'price' => 'required',
-            'type' => 'required',
             'premi' => 'required'
           ]);
       
@@ -72,13 +77,14 @@ class PoliciesController extends Controller
           $savePolicies->numb_policies = $request->numb_policies;
           $savePolicies->numb_applications = $request->numb_applications;
           $savePolicies->name = $request->name;
-          $savePolicies->trees = $request->trees;
+          $savePolicies->trees = $request->idtrees;
           $savePolicies->age = $request->age;
           $savePolicies->exp = $request->exp;
           $savePolicies->price = $request->price;
-          $savePolicies->type = $request->type;
+          $savePolicies->type = $request->idbuildings;
           $savePolicies->premi = $request->premi;
-          $savePolicies->save();           
+          $savePolicies->save();          
+        //   return $request->all();
           return redirect('policies')->with('status_success','New Polis Created');
         
     }

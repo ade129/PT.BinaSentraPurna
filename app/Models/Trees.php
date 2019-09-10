@@ -14,4 +14,8 @@ class Trees extends Model
     protected $table = 'trees';
     protected $primaryKey = 'idtrees';
 
+    public function policies()
+    {
+        return $this->belongsTo('App\Models\Policies','idpolicies');
+    }
 }
