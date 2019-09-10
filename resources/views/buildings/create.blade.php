@@ -1,12 +1,11 @@
-section class="content-header">
+<section class="content-header">
   <h1>
-      Data Tipe Bangunan
-      <small>Master</small>
+      Tipe Bangunan
   </h1>
   <ol class="breadcrumb">
       <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i>Home</a>
-      <li class="active"><i class="fa fa-database"></i>Data</a>
-      <li><a href="{{url('/buildings')}}"><i class="fa fa-cubes"></i>Tipe Bangunan</a>
+      <li class="active"><i class="fa fa-database"></i>Tipe Bangunan</a>
+      <li><a href="{{url('/buildings')}}"><i class="fa fa-cubes"></i>Index</a>
       <li class="active"><i class="fa fa-plus"></i>Create New</a>
   </ol>
 </section>
