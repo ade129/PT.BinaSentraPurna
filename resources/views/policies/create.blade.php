@@ -25,7 +25,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">Nomor Polis</label>
             <div class="col-sm-8">
-              <input type="number" class="form-control" placeholder="Nomor Polis" name="numb_policies" required>
+              <input type="number" class="form-control" placeholder="" name="numb_policies" readonly>
             </div>
           </div>
 
@@ -58,7 +58,13 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">Usia</label>
             <div class="col-sm-1">
-            <input type="number" class="form-control" placeholder="Usia" name="age" required readonly>
+            <input type="number" class="form-control" id="age" name="age" readonly>
+            </div>
+            <div class="input-group date col-sm-2">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                <input type="text" class="form-control datepicker pull-right"  id="datepicker" data-date-format='yyyy-mm-dd' value="{{date('Y-m-d')}}" autocomplete="off">
             </div>
           </div>
 
@@ -107,11 +113,24 @@
       </div>  
     </div>                  
     </section>
-    {{-- //delete row
-    $('#table').on('click', '.del' ,function(){
-      $(this).closest('tr').remove();
-    }); --}}
   </section>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script>
+      $(function() {
+          $( "#datepicker" ).datepicker();
+      });
+
+      window.onload=function(){
+          $('#datepicker').on('change', function() {
+              var dob = new Date(this.value);
+              var today = new Date();
+              var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+              $('#age').val(age);
+          });
+      }
+
+  </script>
   
         
         

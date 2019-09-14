@@ -63,7 +63,6 @@ class PoliciesController extends Controller
     public function save_page(Request $request)
     {
         $request->validate([    
-            'numb_policies' => 'required',
             'numb_applications' => 'required',
             'name' => 'required',
             'age' => 'required',
@@ -73,7 +72,7 @@ class PoliciesController extends Controller
           ]);
       
           $savePolicies = New Policies;
-          $savePolicies->numb_policies = $request->numb_policies;
+          $savePolicies->numb_policies = $this->get_code;
           $savePolicies->numb_applications = $request->numb_applications;
           $savePolicies->name = $request->name;
           $savePolicies->trees = $request->idtrees;
@@ -139,5 +138,25 @@ class PoliciesController extends Controller
             
     }
 
+    protected function get_code()
+    {
+        $date_ym = date('ym');
+  		$date_between = [date('Y-m-01 00:00:00'), date('Y-m-t 23:59:59')];
+
+        $dataPolicies = Policies::select ('numb_policies')
+         ->whereBetween('created_at',$date_between)
+         ->orderBy('numb_policies','desc')
+         ->first();
+
+         if(is_null($dataPolicies)){
+             $nowcode = '0001';
+         } else {
+              $lastcode = $dataPolicies->numb_policies;
+              $lastcode1 = intval(substr($lastcode,-5))+1;
+              $nowcode = str_pad($lastcode1, 5 ,'0', STR_PAD_LEFT);
+
+          }   
+          return 'POLICIES-'.$date_ym.'-'.$nowcode;
+         }
 
 }

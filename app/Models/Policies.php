@@ -10,7 +10,6 @@ class Policies extends Model
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
-
     protected $table = 'policies';
     protected $primaryKey = 'idpolicies';
 
