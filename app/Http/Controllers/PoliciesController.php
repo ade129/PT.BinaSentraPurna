@@ -7,7 +7,6 @@ use App\Models\Policies;
 use App\Models\Trees;
 use App\Models\Buildings;
 use Illuminate\Http\Request;
-use Validator;
 use SoftDeletes;
 
 class PoliciesController extends Controller

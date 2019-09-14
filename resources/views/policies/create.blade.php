@@ -54,12 +54,11 @@
                 </select>
                 </div>
           </div>
-
   
           <div class="form-group">
             <label class="col-sm-2 control-label">Usia</label>
-            <div class="col-sm-8">
-              <input type="number" class="form-control" placeholder="Usia" name="age" required>
+            <div class="col-sm-1">
+            <input type="number" class="form-control" placeholder="Usia" name="age" required readonly>
             </div>
           </div>
 
