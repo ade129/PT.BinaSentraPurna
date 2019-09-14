@@ -87,7 +87,13 @@
               <div class="col-sm-8">
                 <select class="form-control" name="idbuildings" id="sel1">
                   <option value="">--Pilih Tipe Bangunan--</option>
+                  @php
+                      $param = [];
+                  @endphp
                   @foreach ($buildings as $bangunan)
+                  @php
+                      $param[$bangunan->idbuildings] = $bangunan->fee;
+                  @endphp
                   <option value="{{$bangunan->idbuildings}}">{{$bangunan->name}}</option>    
                   @endforeach
                 </select>
