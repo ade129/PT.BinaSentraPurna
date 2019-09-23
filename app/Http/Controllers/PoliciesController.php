@@ -40,7 +40,7 @@ class PoliciesController extends Controller
 
     public function create_page()
     {
-        $trees = Trees::all();
+                $trees = Trees::all();
         $buildings = Buildings::all();
         $contents = [
             'trees' => $trees,

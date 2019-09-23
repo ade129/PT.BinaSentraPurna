@@ -71,21 +71,21 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">Jangka Waktu</label>
             <div class="col-sm-8">
-              <input type="number" class="form-control" placeholder="Jangka Waktu" name="exp" required>
+              <input type="number" class="form-control" placeholder="Jangka Waktu" name="exp" id="exp" value="0" onkeyup="total(1)" required>
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-2 control-label">Harga Bangunan</label>
             <div class="col-sm-8">
-            <input type="number" class="form-control" placeholder="Harga Bangunan" name="price" required>
+            <input type="number" class="form-control" placeholder="Harga Bangunan" name="price" id="price" value="0" onkeyup="total(1)" required>
             </div>
           </div>
 
           <div class="form-group">
               <label class="col-sm-2 control-label">Tipe Bangunan</label>
               <div class="col-sm-8">
-                <select class="form-control" name="idbuildings" id="sel1">
+                <select class="form-control" name="idbuildings" id="idbuildings" onchange="passing_fee(this.value)">
                   <option value="">--Pilih Tipe Bangunan--</option>
                   @php
                       $param = [];
@@ -99,11 +99,19 @@
                 </select>
               </div>
           </div>
+          
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Tarif</label>
+            <div class="col-sm-8">
+              <!-- {{-- name:name untuk melempar controller ke database --}} -->
+              <input type="text" class="form-control" value="0" id="Tarif" name="fee" onkeyup="total(1)" required>
+            </div>
+          </div>
 
           <div class="form-group">
             <label class="col-sm-2 control-label">Premi</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" placeholder="Premi" name="premi" required>
+              <input type="text" class="form-control" value="0" id="premi" name="premi" onkeyup="total(1)" required>
             </div>
         </div>
 
@@ -122,7 +130,34 @@
   </section>
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
+
+    var buildings = {!!json_encode($param)!!};
+    //console.log(buildings);
+    var idbuildings = '';
+
+    function passing_fee(val){
+      $('#fee').val(buildings[val]);
+    } 
+
+    function total(id){
+      var price = $('#price').val();
+      var fee = $('#fee').val();
+      var exp = $().val;
+      var x = 1000;
+      var y = 2500;
+
+      setTimeout(function(){
+        var premi = parseInt(price) * parseInt(fee) / parseInt(x) * parseInt(exp) + parseInt(y);
+        if(premi > 0){
+        $('#premi').val(premi);
+        }else{
+          $('#premi').val(0);
+        }
+      }, 500);
+    }
+
       $(function() {
           $( "#datepicker" ).datepicker();
       });
